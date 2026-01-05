@@ -1,0 +1,16 @@
+{
+  "name": "warsha-fullstack-react-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently -p \"[{name}]\" -n \"BACK,FRONT\" -c \"bgBlue,bgGreen\" \"pnpm run -F backend dev\" \"pnpm run -F frontend dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.26.2",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
