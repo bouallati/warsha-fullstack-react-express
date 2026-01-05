@@ -1,54 +1,36 @@
 import axios from "axios";
+import { asyncHandler } from "../middlewares/index.js";
 
 const BASE_URL = process.env.API_URL;
 
-export const getProducts = async (req, res) => {
-  try {
-    const response = await axios.get(BASE_URL);
-    res.status(200).json(response.data);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching data" });
-  }
-};
+export const getProducts = asyncHandler(async (req, res) => {
+  const response = await axios.get(BASE_URL);
+  res.status(200).json(response.data);
+});
 
-export const getProductById = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const response = await axios.get(`${BASE_URL}/${id}`);
-    res.status(200).json(response.data);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching data" });
-  }
-};
+export const getProductById = asyncHandler(async (req, res) => {
+  const response = await axios.get(`${BASE_URL}/${req.params.id}`);
+  res.status(200).json(response.data);
+});
 
-export const createProduct = async (req, res) => {
-  try {
-    const response = await axios.post(BASE_URL, req.body);
-    res.status(201).json(response.data);
-  } catch (error) {
-    res.status(500).json({ message: "Error creating product" });
-  }
-};
+export const createProduct = asyncHandler(async (req, res) => {
+  const response = await axios.post(BASE_URL, req.body);
+  res.status(201).json(response.data);
+});
 
-export const updateProduct = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const response = await axios.patch(
-      `${process.env.API_URL}/${id}`,
-      req.body
-    );
-    res.status(200).json(response.data);
-  } catch (error) {
-    res.status(500).json({ message: "Error patching product" });
-  }
-};
+export const updateProduct = asyncHandler(async (req, res) => {
+  const response = await axios.put(`${BASE_URL}/${req.params.id}`, req.body);
+  res.status(200).json(response.data);
+});
 
-export const deleteProduct = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const response = await axios.delete(`${BASE_URL}/${id}`);
-    res.status(200).json(response.data);
-  } catch (error) {
-    res.status(500).json({ message: "Error deleting product" });
-  }
-};
+export const patchProduct = asyncHandler(async (req, res) => {
+  const response = await axios.patch(`${BASE_URL}/${req.params.id}`, req.body);
+  res.status(200).json(response.data);
+});
+
+export const deleteProduct = asyncHandler(async (req, res) => {
+  await axios.delete(`${BASE_URL}/${req.params.id}`);
+  res.status(200).json({ message: "Product deleted successfully" });
+});
+
+// console.log("API URL is:", process.env.API_URL);

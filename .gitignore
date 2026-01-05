@@ -3,3 +3,7 @@ script.txt
 .env
 
 packages/frontend/
+
+dist/
+build/
+.DS_Store
