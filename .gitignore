@@ -4,7 +4,7 @@ script.txt
 .env
 
 # packages/backend/
-# packages/frontend/
+packages/frontend/
 
 
 dist/
