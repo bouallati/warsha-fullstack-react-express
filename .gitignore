@@ -1,7 +1,12 @@
+.vscode
 node_modules
 script.txt
 .env
 
-packages/backend/
+# packages/backend/
+# packages/frontend/
 
-.vscode
+
+dist/
+build/
+.DS_Store
